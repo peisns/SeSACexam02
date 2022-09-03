@@ -20,6 +20,11 @@
 		35149A9F28C11C8800F2C4BD /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35149A9E28C11C8800F2C4BD /* UserDefaults.swift */; };
 		35149AA128C129DB00F2C4BD /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35149AA028C129DB00F2C4BD /* MainTableViewCell.swift */; };
 		35149AA328C12A1C00F2C4BD /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35149AA228C12A1C00F2C4BD /* ReusableProtocol.swift */; };
+		35149AA528C17AE200F2C4BD /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35149AA428C17AE200F2C4BD /* MainModel.swift */; };
+		35149AA728C1803900F2C4BD /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35149AA628C1803900F2C4BD /* WriteViewController.swift */; };
+		35149AA928C1804A00F2C4BD /* WriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35149AA828C1804A00F2C4BD /* WriteView.swift */; };
+		3518633F28C1EA6E0098D7A1 /* memoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3518633E28C1EA6E0098D7A1 /* memoModel.swift */; };
+		3518634328C1F9970098D7A1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3518634228C1F9970098D7A1 /* IQKeyboardManagerSwift */; };
 		35B393E928BFB306000008C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B393E828BFB306000008C9 /* AppDelegate.swift */; };
 		35B393EB28BFB306000008C9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B393EA28BFB306000008C9 /* SceneDelegate.swift */; };
 		35B393ED28BFB306000008C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B393EC28BFB306000008C9 /* ViewController.swift */; };
@@ -38,6 +43,10 @@
 		35149A9E28C11C8800F2C4BD /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		35149AA028C129DB00F2C4BD /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		35149AA228C12A1C00F2C4BD /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
+		35149AA428C17AE200F2C4BD /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		35149AA628C1803900F2C4BD /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
+		35149AA828C1804A00F2C4BD /* WriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteView.swift; sourceTree = "<group>"; };
+		3518633E28C1EA6E0098D7A1 /* memoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memoModel.swift; sourceTree = "<group>"; };
 		35B393E528BFB306000008C9 /* SeSACexam02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACexam02.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B393E828BFB306000008C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35B393EA28BFB306000008C9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3518634328C1F9970098D7A1 /* IQKeyboardManagerSwift in Frameworks */,
 				35149A9828C0844800F2C4BD /* RealmSwift in Frameworks */,
 				35149A9628C0844800F2C4BD /* Realm in Frameworks */,
 				35149A9028C083DA00F2C4BD /* SnapKit in Frameworks */,
@@ -78,6 +88,8 @@
 				35149A8428C0827D00F2C4BD /* MainViewController.swift */,
 				35149A8628C0828A00F2C4BD /* MainView.swift */,
 				35149AA028C129DB00F2C4BD /* MainTableViewCell.swift */,
+				35149AA428C17AE200F2C4BD /* MainModel.swift */,
+				35149AAA28C1805000F2C4BD /* Write */,
 				35149A9D28C10F9800F2C4BD /* Welcome */,
 			);
 			path = Main;
@@ -90,6 +102,15 @@
 				35149A9B28C10F9300F2C4BD /* WelcomeView.swift */,
 			);
 			path = Welcome;
+			sourceTree = "<group>";
+		};
+		35149AAA28C1805000F2C4BD /* Write */ = {
+			isa = PBXGroup;
+			children = (
+				35149AA628C1803900F2C4BD /* WriteViewController.swift */,
+				35149AA828C1804A00F2C4BD /* WriteView.swift */,
+			);
+			path = Write;
 			sourceTree = "<group>";
 		};
 		35B393DC28BFB306000008C9 = {
@@ -113,6 +134,7 @@
 			children = (
 				35149AA228C12A1C00F2C4BD /* ReusableProtocol.swift */,
 				35149A9E28C11C8800F2C4BD /* UserDefaults.swift */,
+				3518633E28C1EA6E0098D7A1 /* memoModel.swift */,
 				35149A8C28C082A000F2C4BD /* Base */,
 				35149A8D28C082A400F2C4BD /* Main */,
 				35B393E828BFB306000008C9 /* AppDelegate.swift */,
@@ -147,6 +169,7 @@
 				35149A9228C083FC00F2C4BD /* Then */,
 				35149A9528C0844800F2C4BD /* Realm */,
 				35149A9728C0844800F2C4BD /* RealmSwift */,
+				3518634228C1F9970098D7A1 /* IQKeyboardManagerSwift */,
 			);
 			productName = SeSACexam02;
 			productReference = 35B393E528BFB306000008C9 /* SeSACexam02.app */;
@@ -180,6 +203,7 @@
 				35149A8E28C083DA00F2C4BD /* XCRemoteSwiftPackageReference "SnapKit" */,
 				35149A9128C083FC00F2C4BD /* XCRemoteSwiftPackageReference "Then" */,
 				35149A9428C0844700F2C4BD /* XCRemoteSwiftPackageReference "realm-swift" */,
+				3518634128C1F9970098D7A1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 35B393E628BFB306000008C9 /* Products */;
 			projectDirPath = "";
@@ -209,11 +233,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				35149AA128C129DB00F2C4BD /* MainTableViewCell.swift in Sources */,
+				35149AA528C17AE200F2C4BD /* MainModel.swift in Sources */,
+				35149AA928C1804A00F2C4BD /* WriteView.swift in Sources */,
 				35B393ED28BFB306000008C9 /* ViewController.swift in Sources */,
 				35149AA328C12A1C00F2C4BD /* ReusableProtocol.swift in Sources */,
 				35149A9A28C10F8600F2C4BD /* WelcomeViewController.swift in Sources */,
 				35B393E928BFB306000008C9 /* AppDelegate.swift in Sources */,
+				35149AA728C1803900F2C4BD /* WriteViewController.swift in Sources */,
 				35B393EB28BFB306000008C9 /* SceneDelegate.swift in Sources */,
+				3518633F28C1EA6E0098D7A1 /* memoModel.swift in Sources */,
 				35149A9C28C10F9300F2C4BD /* WelcomeView.swift in Sources */,
 				35149A8928C0829300F2C4BD /* BaseView.swift in Sources */,
 				35149A9F28C11C8800F2C4BD /* UserDefaults.swift in Sources */,
@@ -467,6 +495,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		3518634128C1F9970098D7A1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -489,6 +525,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 35149A9428C0844700F2C4BD /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		3518634228C1F9970098D7A1 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3518634128C1F9970098D7A1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

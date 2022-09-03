@@ -58,7 +58,7 @@ final class WelcomeView: BaseView {
         button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
     }
     
-    @objc private func buttonClicked() {
+    @objc func buttonClicked() {
         welcomeVC.dismiss(animated: false)
         UserDefaults.standard.set(true, forKey: userDefaults.checkWelcomeView.rawValue)
     }

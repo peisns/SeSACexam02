@@ -6,11 +6,14 @@
 //
 
 import UIKit
-
+//import RealmSwift
 
 
 class BaseViewController: UIViewController {
 
+//    public let realm = try! Realm()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,6 +24,15 @@ class BaseViewController: UIViewController {
         
     }
     
+    func presentCheckAlert(title: String, message: String) {
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let check = UIAlertAction(title: "확인", style: .default)
+        
+        controller.addAction(check)
+        
+        present(controller, animated: true)
+    }
     
     
 

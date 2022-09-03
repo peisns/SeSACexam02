@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WelcomeViewController: BaseViewController {
+final class WelcomeViewController: BaseViewController {
 
     let mainView = WelcomeView()
     
