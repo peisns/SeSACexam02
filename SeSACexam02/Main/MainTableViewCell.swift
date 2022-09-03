@@ -57,6 +57,9 @@ class MainTableViewCell: UITableViewCell {
         stackView.snp.makeConstraints { make in
             make.edges.equalTo(self.contentView).inset(16)
         }
+        dateContentView.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(stackView)
+        }
         dateLabel.snp.makeConstraints { make in
             make.top.leading.bottom.equalTo(dateContentView)
         }

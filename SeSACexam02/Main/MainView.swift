@@ -77,14 +77,42 @@ extension MainView: UITableViewDelegate, UITableViewDataSource {
                 $0.isMarked == true
             }
             cell.titleLabel.text = markedMemos[indexPath.row].title
-            cell.dateLabel.text = "\(markedMemos[indexPath.row].date)   "
+            
+            let date = markedMemos[indexPath.row].date
+            let DF = DateFormatter()
+            DF.locale = Locale(identifier:"ko_KR")
+            switch dateGap(date: date) {
+            case 0:
+                DF.dateFormat = "a hh:mm"
+            case 1...6:
+                DF.dateFormat = "EEEE"
+            default:
+                DF.dateFormat = "yyyy. MM. dd. a hh:mm "
+            }
+            let newDate = DF.string(from: date)
+            cell.dateLabel.text = newDate
+            
             cell.contentLabel.text = markedMemos[indexPath.row].content!.isEmpty ? "추가 텍스트 없음" : markedMemos[indexPath.row].content
         } else {
             let notMarkedMemos = realm.objects(Memo.self).sorted(byKeyPath: "date", ascending: false).where {
                 $0.isMarked == false
             }
             cell.titleLabel.text = notMarkedMemos[indexPath.row].title
-            cell.dateLabel.text = "\(notMarkedMemos[indexPath.row].date)   "
+            
+            let date = notMarkedMemos[indexPath.row].date
+            let DF = DateFormatter()
+            DF.locale = Locale(identifier:"ko_KR")
+            switch dateGap(date: date) {
+            case 0:
+                DF.dateFormat = "a hh:mm"
+            case 1...6:
+                DF.dateFormat = "EEEE"
+            default:
+                DF.dateFormat = "yyyy. MM. dd. a hh:mm "
+            }
+            let newDate = DF.string(from: date)
+            cell.dateLabel.text = newDate
+            
             cell.contentLabel.text = notMarkedMemos[indexPath.row].content!.isEmpty ? "추가 텍스트 없음" : notMarkedMemos[indexPath.row].content
         }
                 
@@ -129,20 +157,61 @@ extension MainView: UITableViewDelegate, UITableViewDataSource {
     }
         
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        
+        let markedMemos = realm.objects(Memo.self).sorted(byKeyPath: "date", ascending: false).where {
+            $0.isMarked == true
+        }
+        let notMarkedMemos = realm.objects(Memo.self).sorted(byKeyPath: "date", ascending: false).where {
+            $0.isMarked == false
+        }
         let memos = realm.objects(Memo.self).sorted(byKeyPath: "date", ascending: false)
+        var delete = UIContextualAction()
 
-        let delete = UIContextualAction(style: .destructive, title: nil) { action, view, completionHandler in
-            try! self.realm.write {
-
-                let memo = memos[indexPath.row]
-                self.realm.delete(memo)
-
+        if indexPath.section == 0 {
+            delete = UIContextualAction(style: .destructive, title: nil) { action, view, completionHandler in
+                
+                self.vc.presentAlert(title: "삭제", message: "정말로 삭제하시겠습니까?") {
+                    try! self.realm.write {
+                        
+                        let memo = markedMemos[indexPath.row]
+                        self.realm.delete(memo)
+                        
+                        tableView.reloadData()
+                        self.vc.navigationItem.title = memos.count == 0 ? "메모" : "\(memos.count)개의 메모"
+                    }
+                }
                 tableView.reloadData()
-                self.vc.navigationItem.title = memos.count == 0 ? "메모" : "\(memos.count)개의 메모"
+            }
+        } else {
+            delete = UIContextualAction(style: .destructive, title: nil) { action, view, completionHandler in
+                
+                self.vc.presentAlert(title: "삭제", message: "정말로 삭제하시겠습니까?") {
+                    try! self.realm.write {
+                        
+                        let memo = notMarkedMemos[indexPath.row]
+                        self.realm.delete(memo)
+                        
+                        tableView.reloadData()
+                        self.vc.navigationItem.title = memos.count == 0 ? "메모" : "\(memos.count)개의 메모"
+                    }
+                }
+                tableView.reloadData()
             }
         }
+        
+        
+
         delete.image = UIImage(systemName: "trash.fill")
         return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    func dateGap(date: Date) -> Int {
+        let date = date
+        let calendar = Calendar.current
+        let nowDate = Date()
+        let gap = calendar.dateComponents([.day], from: date, to: nowDate)
+        return gap.day ?? 9999
     }
 }
 

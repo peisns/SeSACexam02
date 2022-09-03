@@ -34,6 +34,19 @@ class BaseViewController: UIViewController {
         present(controller, animated: true)
     }
     
+    func presentAlert(title: String, message: String, handler: @escaping () -> ()) {
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let check = UIAlertAction(title: "확인", style: .destructive) { action in
+            handler()
+        }
+        
+        controller.addAction(cancel)
+        controller.addAction(check)
+        
+        present(controller, animated: true)
+    }
     
 
 }
