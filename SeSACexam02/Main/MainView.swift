@@ -213,5 +213,18 @@ extension MainView: UITableViewDelegate, UITableViewDataSource {
         let gap = calendar.dateComponents([.day], from: date, to: nowDate)
         return gap.day ?? 9999
     }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let memos = realm.objects(Memo.self).sorted(byKeyPath: "date", ascending: false).where { $0.isMarked == true
+        }
+        
+        switch section {
+        case 0:
+            return memos.count == 0 ? 0.01 : UITableView.automaticDimension
+        default:
+            return UITableView.automaticDimension
+        }
+    }
+    
 }
 

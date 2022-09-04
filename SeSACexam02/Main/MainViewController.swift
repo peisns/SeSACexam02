@@ -58,7 +58,11 @@ final class MainViewController: BaseViewController {
     
     func showTitle() {
         let memos = realm.objects(Memo.self).sorted(byKeyPath: "date", ascending: false)
-        navigationItem.title = memos.count == 0 ? "메모" : "\(memos.count)개의 메모"
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        let memosCount = numberFormatter.string(from: memos.count as NSNumber) ?? "0"
+
+        navigationItem.title = Int(memosCount) == 0 ? "메모" : "\(memosCount)개의 메모"
     }
 //
     private func setToolBar() {
@@ -82,4 +86,6 @@ final class MainViewController: BaseViewController {
                 present(vc, animated: false)
             return }
     }
+    
+    
 }
