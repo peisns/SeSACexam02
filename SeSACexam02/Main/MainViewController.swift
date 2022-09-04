@@ -8,11 +8,16 @@
 import UIKit
 import RealmSwift
 
-final class MainViewController: BaseViewController {
+
+class MainViewController: BaseViewController {
     
     var mainView = MainView()
     
     let realm = try! Realm()
+    
+    var filteredArr: [String] = []
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func loadView() {
         self.view = mainView
@@ -46,7 +51,7 @@ final class MainViewController: BaseViewController {
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         
-        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
         searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
         searchController.searchBar.tintColor = .systemOrange
         searchController.searchBar.searchTextField.placeholder = "검색"
@@ -87,5 +92,24 @@ final class MainViewController: BaseViewController {
             return }
     }
     
-    
+    func searchBarIsEmpty() -> Bool {
+      // Returns true if the text is empty or nil
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+
+}
+
+extension MainViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text?.lowercased() else { return }
+        let memos = realm.objects(Memo.self).where {
+            $0.title.contains(text, options: .caseInsensitive) ||
+            $0.content.contains(text, options: .caseInsensitive)
+        }.sorted(byKeyPath: "date", ascending: false)
+        mainView.filteredMemo = memos
+        mainView.searchBarIsEmpty = searchBarIsEmpty()
+        mainView.mainTableView.reloadData()
+        print(memos)
+        
+    }
 }
