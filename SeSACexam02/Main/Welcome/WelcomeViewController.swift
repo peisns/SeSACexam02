@@ -13,12 +13,17 @@ final class WelcomeViewController: BaseViewController {
     
     override func loadView() {
         self.view = mainView
-        mainView.welcomeVC = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mainView.button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
     }
-
+    
+    @objc func buttonClicked() {
+        dismiss(animated: false)
+        UserDefaults.standard.set(true, forKey: UserDefault.checkWelcomeView.rawValue)
+    }
 
 }

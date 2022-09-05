@@ -9,8 +9,6 @@ import UIKit
 
 final class WelcomeView: BaseView {
     
-    var welcomeVC = UIViewController()
-
     private let centerView = UIView().then {
         $0.backgroundColor = UIColor(red: CGFloat(82/255), green: CGFloat(86/255), blue: CGFloat(88/255), alpha: 1)
         $0.layer.cornerRadius = 15
@@ -30,17 +28,15 @@ final class WelcomeView: BaseView {
         $0.font = .boldSystemFont(ofSize: 20)
     }
     
-    private let button = UIButton().then {
+    let button = UIButton().then {
         $0.setTitle("확인", for: .normal)
         $0.setTitleColor(UIColor.white, for: .normal)
         $0.backgroundColor = .systemOrange
         $0.layer.cornerRadius = 15
     }
-
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
     }
     
     required init?(coder: NSCoder) {
@@ -54,17 +50,9 @@ final class WelcomeView: BaseView {
 
         self.addSubview(centerView)
         [label, button].forEach {centerView.addSubview($0)}
-        
-        button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
-    }
-    
-    @objc func buttonClicked() {
-        welcomeVC.dismiss(animated: false)
-        UserDefaults.standard.set(true, forKey: UserDefault.checkWelcomeView.rawValue)
     }
     
     override func setConstraints() {
-        
         centerView.snp.makeConstraints { make in
             make.center.equalTo(self)
             make.width.height.equalTo(250)
@@ -79,6 +67,5 @@ final class WelcomeView: BaseView {
             make.leading.trailing.bottom.equalTo(centerView).inset(20)
             make.height.equalTo(44)
         }
-
     }
 }
