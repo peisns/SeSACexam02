@@ -10,7 +10,7 @@ import UIKit
 final class WriteView: BaseView {
     
     let textView = UITextView().then {
-        $0.backgroundColor = .purple
+        $0.backgroundColor = .systemBackground
     }
 
     override init(frame: CGRect) {

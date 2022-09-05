@@ -60,7 +60,7 @@ final class WelcomeView: BaseView {
     
     @objc func buttonClicked() {
         welcomeVC.dismiss(animated: false)
-        UserDefaults.standard.set(true, forKey: userDefaults.checkWelcomeView.rawValue)
+        UserDefaults.standard.set(true, forKey: UserDefault.checkWelcomeView.rawValue)
     }
     
     override func setConstraints() {

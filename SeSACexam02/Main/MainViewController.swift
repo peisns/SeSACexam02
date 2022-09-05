@@ -36,6 +36,9 @@ class MainViewController: BaseViewController {
         
         showTitle()
         presentWelcomeVC()
+        
+        navigationController?.navigationBar.topItem?.backButtonTitle = "메모"
+        
         mainView.mainTableView.reloadData()
     }
 
@@ -57,8 +60,6 @@ class MainViewController: BaseViewController {
         searchController.searchBar.searchTextField.placeholder = "검색"
         self.navigationItem.searchController = searchController
         
-
-        
     }
     
     func showTitle() {
@@ -79,13 +80,14 @@ class MainViewController: BaseViewController {
     }
 //
     @objc private func writeBtnClicked() {
+        UserDefaults.standard.set(true, forKey: UserDefault.showingKeyboard.rawValue)
         let vc = WriteViewController()
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: true)
     }
 //
     func presentWelcomeVC() {
-        guard UserDefaults.standard.bool(forKey: userDefaults.checkWelcomeView.rawValue) else {
+        guard UserDefaults.standard.bool(forKey: UserDefault.checkWelcomeView.rawValue) else {
                 let vc = WelcomeViewController()
                 vc.modalPresentationStyle = .overFullScreen
                 present(vc, animated: false)
@@ -96,7 +98,6 @@ class MainViewController: BaseViewController {
       // Returns true if the text is empty or nil
         return searchController.searchBar.text?.isEmpty ?? true
     }
-
 }
 
 extension MainViewController: UISearchResultsUpdating {
@@ -108,8 +109,8 @@ extension MainViewController: UISearchResultsUpdating {
         }.sorted(byKeyPath: "date", ascending: false)
         mainView.filteredMemo = memos
         mainView.searchBarIsEmpty = searchBarIsEmpty()
+        mainView.searchKeyword = text
         mainView.mainTableView.reloadData()
         print(memos)
-        
     }
 }
