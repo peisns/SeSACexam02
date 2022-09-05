@@ -14,36 +14,28 @@ final class WriteViewController: BaseViewController {
     let mainView = WriteView()
     
     var objectID = ObjectId()
-        
+    lazy var textArray = mainView.textView.text!.split(separator: "\n", maxSplits: 1)
+    
     override func loadView() {
         self.view = mainView
-        print("It's WriteViewController")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setNav()
         setKeyboard()
-        print("It's writeViewController viewDidLoard")
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         UserDefaults.standard.set(false, forKey: UserDefault.showingKeyboard.rawValue)
         
-        let memos = realm.objects(Memo.self).sorted(byKeyPath: "date", ascending: false)
-
-        let textArray = mainView.textView.text!.split(separator: "\n", maxSplits: 1)
-        
         if UserDefaults.standard.bool(forKey: UserDefault.pushedFromCell.rawValue) {
-            let memo = realm.objects(Memo.self).sorted(byKeyPath: "date", ascending: false).where {
+            let memo = RealmManager.shared.memos.where {
                 $0._id == objectID
             }.first!
             if textArray.count == 0 {
-                try! realm.write {
-                realm.delete(memo)
-                }
+                RealmManager.shared.delete(memo: memo)
             } else {
                 try! realm.write {
                     switch textArray.count {
@@ -58,15 +50,13 @@ final class WriteViewController: BaseViewController {
                         break
                     }
                 }
-
             }
         } else {
             if textArray.count != 0 {
                 self.saveMemo()
             }
-        
-        UserDefaults.standard.set(false, forKey: UserDefault.pushedFromCell.rawValue)
         }
+        UserDefaults.standard.set(false, forKey: UserDefault.pushedFromCell.rawValue)
     }
     
     func setKeyboard() {
@@ -81,7 +71,6 @@ final class WriteViewController: BaseViewController {
         self.navigationItem.rightBarButtonItems = [completeBtn, shareBtn]
         
         navigationItem.largeTitleDisplayMode = .never
-        
     }
     
     @objc private func completeBtnClicked() {
@@ -89,41 +78,42 @@ final class WriteViewController: BaseViewController {
     }
     
     func saveMemo() {
-        let textArray = mainView.textView.text!.split(separator: "\n", maxSplits: 1)
         var title = ""
         var content = ""
-        switch textArray.count {
-        case 0:
-            break
-        case 1:
-            title = String(textArray[0])
-        case 2:
-            title = String(textArray[0])
-            content = String(textArray[1])
-        default:
-            break
-        }
-        
+        makeTitleAndContent(Array: textArray, title: &title, content: &content)
         guard title.isEmpty else {
             try! realm.write {
                 realm.add(Memo(title: title, content: content, date: Date()))
             }
             return }
     }
-        
+    
+    func makeTitleAndContent(Array: [String.SubSequence], title: inout String, content: inout String) {
+        switch Array.count {
+        case 0:
+            break
+        case 1:
+            title = String(Array[0])
+        case 2:
+            title = String(Array[0])
+            content = String(Array[1])
+        default:
+            break
+        }
+    }
+    
     @objc private func shareBtnClicked() {
         print(#function)
         let activityViewController = UIActivityViewController(activityItems: [mainView.textView.text!], applicationActivities: nil)
-
+        
         activityViewController.excludedActivityTypes = []
-
-        // 3. 컨트롤러를 닫은 후 실행할 완료 핸들러 지정
+        
         activityViewController.completionWithItemsHandler = { (activity, success, items, error) in
             if success {
                 self.presentCheckAlert(title: "내보내기", message: "성공")
-           }  else  {
-               self.presentCheckAlert(title: "내보내기", message: "실패")
-           }
+            }  else  {
+                self.presentCheckAlert(title: "내보내기", message: "실패")
+            }
         }
         self.present(activityViewController, animated: true, completion: nil)
     }

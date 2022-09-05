@@ -25,6 +25,7 @@
 		35149AA928C1804A00F2C4BD /* WriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35149AA828C1804A00F2C4BD /* WriteView.swift */; };
 		3518633F28C1EA6E0098D7A1 /* memoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3518633E28C1EA6E0098D7A1 /* memoModel.swift */; };
 		3518634328C1F9970098D7A1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3518634228C1F9970098D7A1 /* IQKeyboardManagerSwift */; };
+		3551E1DC28C5D1D80068157C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3551E1DB28C5D1D80068157C /* RealmManager.swift */; };
 		35B393E928BFB306000008C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B393E828BFB306000008C9 /* AppDelegate.swift */; };
 		35B393EB28BFB306000008C9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B393EA28BFB306000008C9 /* SceneDelegate.swift */; };
 		35B393ED28BFB306000008C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B393EC28BFB306000008C9 /* ViewController.swift */; };
@@ -47,6 +48,7 @@
 		35149AA628C1803900F2C4BD /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		35149AA828C1804A00F2C4BD /* WriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteView.swift; sourceTree = "<group>"; };
 		3518633E28C1EA6E0098D7A1 /* memoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memoModel.swift; sourceTree = "<group>"; };
+		3551E1DB28C5D1D80068157C /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		35B393E528BFB306000008C9 /* SeSACexam02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACexam02.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B393E828BFB306000008C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35B393EA28BFB306000008C9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			children = (
 				35149AA228C12A1C00F2C4BD /* ReusableProtocol.swift */,
 				35149A9E28C11C8800F2C4BD /* UserDefault.swift */,
+				3551E1DB28C5D1D80068157C /* RealmManager.swift */,
 				3518633E28C1EA6E0098D7A1 /* memoModel.swift */,
 				35149A8C28C082A000F2C4BD /* Base */,
 				35149A8D28C082A400F2C4BD /* Main */,
@@ -238,6 +241,7 @@
 				35B393ED28BFB306000008C9 /* ViewController.swift in Sources */,
 				35149AA328C12A1C00F2C4BD /* ReusableProtocol.swift in Sources */,
 				35149A9A28C10F8600F2C4BD /* WelcomeViewController.swift in Sources */,
+				3551E1DC28C5D1D80068157C /* RealmManager.swift in Sources */,
 				35B393E928BFB306000008C9 /* AppDelegate.swift in Sources */,
 				35149AA728C1803900F2C4BD /* WriteViewController.swift in Sources */,
 				35B393EB28BFB306000008C9 /* SceneDelegate.swift in Sources */,

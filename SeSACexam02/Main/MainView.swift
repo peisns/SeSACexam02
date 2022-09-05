@@ -268,8 +268,8 @@ extension MainView: UITableViewDelegate, UITableViewDataSource {
         let markedMemos = realm.objects(Memo.self).sorted(byKeyPath: "date", ascending: false).where { $0.isMarked == true }
         let notMarkedMemos = realm.objects(Memo.self).sorted(byKeyPath: "date", ascending: false).where { $0.isMarked == false }
         var text = ""
-        let nextVc = WriteViewController()
         UserDefaults.standard.set(true, forKey: UserDefault.pushedFromCell.rawValue)
+        let nextVc = WriteViewController()
         
         if searchBarIsEmpty {
             if indexPath.section == 0 {
